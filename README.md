@@ -13,7 +13,7 @@
 
 ## Overview
 
-**Left 4 Dead Toolz** is a high-performance sourcemod extension designed to replace "Left4DHooks" due to its excessive bloat and cumbersome structure. It provides nearly all native and forward functions of Left4DHooks.As my first major project, I spent nearly a month completing it. Since I was still in high school at the time, there might be some places I didn't handle well or made mistakes, send issue please.
+**Left 4 Dead Toolz** is a high-performance sourcemod extension designed to replace ["Left4DHooks"](https://forums.alliedmods.net/showthread.php?t=321696) due to its excessive bloat and cumbersome structure. It provides nearly all native and forward functions of Left4DHooks.As my first major project, I spent nearly a month completing it. Since I was still in high school at the time, there might be some places I didn't handle well or made mistakes, send issue please.
 
 <div align="left">
 
