@@ -21,7 +21,7 @@
 
 1. **Download** the all the files in this project;
 2. Place file **left4deadtoolz.autoload** and **left4deadtoolz.ext.2.l4d2.so** into your `/addons/sourcemod/extensions/` directory;
-3. Place file**left4deadtoolz.txt** into your `/addons/sourcemod/gamedata/` directory;
+3. Place file **left4deadtoolz.txt** into your `/addons/sourcemod/gamedata/` directory;
 4. Place file **left4deadtoolz.inc** into your `/addons/sourcemod/scripting/include`, use natives or forwards from it and write your plugins.
 
 ---
