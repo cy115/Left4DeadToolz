@@ -4006,7 +4006,7 @@ native int SetVersusMaxCompletionScore(int score);
  *					or -1 if the team hasn't played the round yet,
  *					or the team's campaign score if campaign_score = true
  */
-// native int GetTeamScore(int logical_team, bool campaign_score=false);
+native int GetTeamScore(int logical_team, bool campaign_score=false);
 
 /**
  * @brief Set the current campaign scores stored in the Director
@@ -8595,7 +8595,7 @@ public void __ext_left4deadtoolz_SetNTVOptional()
 	MarkNativeAsOptional("SetPlayerSpawnTime");
 	MarkNativeAsOptional("GetVersusMaxCompletionScore");
 	MarkNativeAsOptional("SetVersusMaxCompletionScore");
-	// MarkNativeAsOptional("GetTeamScore");
+	MarkNativeAsOptional("GetTeamScore");
 	MarkNativeAsOptional("SetPlayerIntensity");
 	MarkNativeAsOptional("SetCampaignScores");
 	MarkNativeAsOptional("GetMobSpawnTimerRemaining");
