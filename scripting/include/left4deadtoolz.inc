@@ -3999,14 +3999,14 @@ native int SetVersusMaxCompletionScore(int score);
  * @deprecated This function can be called through SDKTools using CTerrorGameRules,
  *			and so you should switch off to using SDKTools instead of this native
  *
- * @param logical_team		L4D1: 1 for A, 2 for B. L4D1: 1-6 (Maybe something like: 1: Your team 1. 2: Enemy team. 3: Survivor completion percentage. 4: Health bonus. 5: Completion percentage. 6: Total score at round end.)
+ * @param logical_team		L4D1: 1-6 (Maybe something like: 1: Your team 1. 2: Enemy team. 3: Survivor completion percentage. 4: Health bonus. 5: Completion percentage. 6: Total score at round end.)
  * @param campaign_score	true to get campaign score instead of map score
  *
  * @return			the logical team's map score
  *					or -1 if the team hasn't played the round yet,
  *					or the team's campaign score if campaign_score = true
  */
-native int GetTeamScore(int logical_team, bool campaign_score=false);
+native int GetTeamScoreRedo(int logical_team, bool campaign_score = false);
 
 /**
  * @brief Set the current campaign scores stored in the Director
@@ -8595,7 +8595,7 @@ public void __ext_left4deadtoolz_SetNTVOptional()
 	MarkNativeAsOptional("SetPlayerSpawnTime");
 	MarkNativeAsOptional("GetVersusMaxCompletionScore");
 	MarkNativeAsOptional("SetVersusMaxCompletionScore");
-	MarkNativeAsOptional("GetTeamScore");
+	MarkNativeAsOptional("GetTeamScoreRedo");
 	MarkNativeAsOptional("SetPlayerIntensity");
 	MarkNativeAsOptional("SetCampaignScores");
 	MarkNativeAsOptional("GetMobSpawnTimerRemaining");
