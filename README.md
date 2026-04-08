@@ -33,5 +33,25 @@
 | ConVars | Default | Description |
 |---------|---------|-------------|
 | `l4d2_addons_eclipse` | `-1` | Addons Manager (-1: use addonconfig; 0: disable addons; 1: enable addons.) |
+| `convar_vscript_output` | ` ` | Buffer used to return VScript values. `Warning: Do not use.` |
+
+---
+
+## Natives & Forwards
+
+|   APIs   |  Count  |
+|----------|---------|
+| Natives  |   383   |
+| Forwards |   222   |
+
+
+---
+
+## Issues & Warning
+
+1. *Some natives must `validate before using`(such as valid client/entity index), or it may cause crash;*
+2. *You can request feature you need in issues, such as adding natives or forwards;*
+3. *Some rare use natives in `Left 4 DHooks` are removed;*
+4. *You can contact me through [My Steam](https://steamcommunity.com/profiles/76561198827998137/)*
 
 ---
