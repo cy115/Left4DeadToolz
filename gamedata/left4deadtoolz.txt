@@ -95,32 +95,23 @@
 					"signature" "VanillaModeOffset"
 				}
 			}
-			"CDirector::ForceNextStage"
+			"g_pMatchExtL4D"
 			{
 				"linux"
 				{
-					"signature" "ForceNextStage"
+					"signature"	"CTerrorGameRules::GetMissionInfo"
+					"read"		"44"
 				}
+				"read"	"0"
 			}
-			"CDirector::ForceNextStage::Address"
+			"fileSystem"
 			{
 				"linux"
 				{
-					"signature" "CDirector::ForceNextStage"
-				}
-			}
-			"CTerrorPlayer::CanBecomeGhost::Address"
-			{
-				"linux"
-				{
-					"signature" "CTerrorPlayer::CanBecomeGhost"
-				}
-			}
-			"CTerrorPlayer::RoundRespawn::Address"
-			{
-				"linux"
-				{
-					"signature" "CTerrorPlayer::RoundRespawn"
+					"signature"	"CDirector::OnServerShutdown"
+					"read"		"366"
+					"read"		"0"
+					"offset"	"4"
 				}
 			}
 		}
@@ -1446,6 +1437,151 @@
 			{
 				"library"	"server"
 				"linux"		"@_ZN17CGlobalEntityList21FindEntityByClassnameEP11CBaseEntityPKc"
+			}
+			"CTerrorGameRules::GetMissionFirstMap"
+			{
+				"library"	"server"
+				"linux"		"@_ZN16CTerrorGameRules18GetMissionFirstMapEPP9KeyValues"
+			}
+			"CTerrorGameRules::GetMissionNextMap"
+			{
+				"library"	"server"
+				"linux"		"@_ZN16CTerrorGameRules17GetMissionNextMapEPP9KeyValues"
+			}
+			"filesystem"
+			{
+				"library"	"server"
+				"linux"		"@filesystem"
+			}
+			"CDirector::OnServerShutdown"
+			{
+				"library"	"server"
+				"linux"		"@_ZN9CDirector16OnServerShutdownEv"
+			}
+			"KeyValues::operator_new"
+			{
+				"library"	"server"
+				"linux"		"@_ZN9KeyValuesnwEj"
+			}
+			"KeyValues::KeyValues"
+			{
+				"library"	"server"
+				"linux"		"@_ZN9KeyValuesC2EPKcP16IKeyValuesSystemb"
+			}
+			"KeyValues::UsesEscapeSequences"
+			{
+				"library"	"server"
+				"linux"		"@_ZN9KeyValues19UsesEscapeSequencesEb"
+			}
+			"KeyValues::LoadFromFile"
+			{
+				"library"	"server"
+				"linux"		"@_ZN9KeyValues12LoadFromFileEP15IBaseFileSystemPKcS3_"
+			}
+			"KeyValues::GetName"
+			{
+				"library"	"server"
+				"linux"		"@_ZNK9KeyValues7GetNameEv"
+			}
+			"KeyValues::SetName"
+			{
+				"library"	"server"
+				"linux"		"@_ZN9KeyValues7SetNameEPKc"
+			}
+			"KeyValues::GetNameSymbol"
+			{
+				"library"	"server"
+				"linux"		"@_ZNK9KeyValues13GetNameSymbolEv"
+			}
+			"KeyValues::GetDataType"
+			{
+				"library"	"server"
+				"linux"		"@_ZN9KeyValues11GetDataTypeEPKc"
+			}
+			"KeyValues::GetString"
+			{
+				"library"	"server"
+				"linux"		"@_ZN9KeyValues9GetStringEPKcS1_"
+			}
+			"KeyValues::SetString"
+			{
+				"library"	"server"
+				"linux"		"@_ZN9KeyValues9SetStringEPKcS1_"
+			}
+			"KeyValues::SetStringValue"
+			{
+				"library"	"server"
+				"linux"		"@_ZN9KeyValues14SetStringValueEPKc"
+			}
+			"KeyValues::GetInt"
+			{
+				"library"	"server"
+				"linux"		"@_ZN9KeyValues6GetIntEPKci"
+			}
+			"KeyValues::SetInt"
+			{
+				"library"	"server"
+				"linux"		"@_ZN9KeyValues6SetIntEPKci"
+			}
+			"KeyValues::GetFloat"
+			{
+				"library"	"server"
+				"linux"		"@_ZN9KeyValues8GetFloatEPKcf"
+			}
+			"KeyValues::SetFloat"
+			{
+				"library"	"server"
+				"linux"		"@_ZN9KeyValues8SetFloatEPKcf"
+			}
+			"KeyValues::GetPtr"
+			{
+				"library"	"server"
+				"linux"		"@_ZN9KeyValues6GetPtrEPKcPv"
+			}
+			"KeyValues::FindKey"
+			{
+				"library"	"server"
+				"linux"		"@_ZN9KeyValues7FindKeyEPKcb"
+			}
+			"KeyValues::FindKeyFromSymbol"
+			{
+				"library"	"server"
+				"linux"		"@_ZNK9KeyValues7FindKeyEi"
+			}
+			"KeyValues::GetFirstSubKey"
+			{
+				"library"	"server"
+				"linux"		"@_ZN9KeyValues14GetFirstSubKeyEv"
+			}
+			"KeyValues::GetNextKey"
+			{
+				"library"	"server"
+				"linux"		"@_ZN9KeyValues10GetNextKeyEv"
+			}
+			"KeyValues::GetFirstTrueSubKey"
+			{
+				"library"	"server"
+				"linux"		"@_ZN9KeyValues18GetFirstTrueSubKeyEv"
+			}
+			"KeyValues::GetNextTrueSubKey"
+			{
+				"library"	"server"
+				"linux"		"@_ZN9KeyValues17GetNextTrueSubKeyEv"
+			}
+			"KeyValues::GetFirstValue"
+			{
+				"library"	"server"
+				"linux"		"@_ZN9KeyValues13GetFirstValueEv"
+			}
+			"KeyValues::GetNextValue"
+			{
+				"library"	"server"
+				"linux"		"@_ZN9KeyValues12GetNextValueEv"
+			}
+			"KeyValues::SaveToFile"
+			{
+				"library"	"server"
+				"linux"		"@_ZN9KeyValues10SaveToFileEP15IBaseFileSystemPKcS3_"
 			}
 		}
 	}

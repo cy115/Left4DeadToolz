@@ -2944,6 +2944,18 @@ enum BOT_CMD
 	BOT_CMD_RESET = 3		// Removes the active bot command and lets the AI resume controlling the bot
 };
 
+enum {  /* DataType */
+    TYPE_NONE = 0,
+    TYPE_STRING,
+    TYPE_INT,
+    TYPE_FLOAT,
+    TYPE_PTR,
+    TYPE_WSTRING,
+    TYPE_COLOR,
+    TYPE_UINT64,
+    TYPE_NUMTYPES,
+}
+
 // Some of these will only be valid after OnMapStart() because they change on each new map. For example: POINTER_GAMERULES, POINTER_THENAVAREAS, POINTER_MISSIONINFO and possibly others
 enum PointerType
 {
@@ -2965,7 +2977,8 @@ enum PointerType
 	POINTER_ITEMMANAGER		= 16,	// pItemManager (L4D2 Only)
 	POINTER_MUSICBANKS		= 17,	// pMusicBanks (L4D2 Only)
 	POINTER_SESSIONMANAGER	= 18,	// pSessionManager (L4D2 Only)
-	POINTER_CHALLENGEMODE	= 19	// pChallengeMode (L4D2 Only) (mutation modes)
+	POINTER_CHALLENGEMODE	= 19,	// pChallengeMode (L4D2 Only) (mutation modes)
+	POINTER_MATCHEXTL4D     = 20    // g_pMatchExtL4D
 };
 
 // From: https://developer.valvesoftware.com/wiki/List_of_L4D_Series_Nav_Mesh_Attributes
@@ -8471,6 +8484,276 @@ native bool AreTeamsFlipped();
  */
 native int InSecondHalfOfRound();
 
+methodmap SourceKeyValues {
+	/**
+	 * 创建 KeyValues 对象
+	 *
+	 * @param name        KeyValues 的名称
+	 */
+	public native SourceKeyValues(const char[] name);
+	
+	/**
+	 * 设置是否使用转义序列
+	 *
+	 * @param state       是否使用转义序列
+	 */
+	public native void UsesEscapeSequences(bool state);
+	
+	/**
+	 * 从文件加载 KeyValues 数据
+	 *
+	 * @param file        文件路径
+	 * @param pathID      路径标识符，默认为 NULL_STRING
+	 * @return            是否成功加载
+	 */
+	public native bool LoadFromFile(const char[] file, const char[] pathID = NULL_STRING);
+	
+	/**
+	 * 检查 KeyValues 对象是否为 null
+	 *
+	 * @return            是否为 null
+	 */
+	public native bool IsNull();
+	
+	/**
+	 * 获取 KeyValues 的名称
+	 *
+	 * @param name        存储名称的缓冲区
+	 * @param maxlength   缓冲区最大长度
+	 */
+	public native void GetName(char[] name, int maxlength);
+	
+	/**
+	 * 设置 KeyValues 的名称
+	 *
+	 * @param setName     要设置的名称
+	 */
+	public native void SetName(const char[] setName);
+	
+	/**
+	 * 获取 KeyValues 的名称符号
+	 *
+	 * @return            名称符号
+	 */
+	public native int GetNameSymbol();
+	
+	/**
+	 * 获取指定键的数据类型
+	 *
+	 * @param key         键名
+	 * @return            数据类型
+	 */
+	public native any GetDataType(const char[] key);
+	
+	/**
+	 * 获取字符串值
+	 *
+	 * @param key         键名
+	 * @param value       存储值的缓冲区
+	 * @param maxlength   缓冲区最大长度
+	 * @param defvalue    默认值
+	 */
+	public native void GetString(const char[] key, char[] value, int maxlength, const char[] defvalue = "");
+	
+	/**
+	 * 设置字符串值
+	 *
+	 * @param key         键名
+	 * @param value       要设置的值
+	 */
+	public native void SetString(const char[] key, const char[] value);
+	
+	/**
+	 * 设置字符串值（无键名）
+	 *
+	 * @param value       要设置的值
+	 */
+	public native void SetStringValue(const char[] value);
+	
+	/**
+	 * 获取整数值
+	 *
+	 * @param key         键名
+	 * @param defvalue    默认值
+	 * @return            整数值
+	 */
+	public native int GetInt(const char[] key, int defvalue = 0);
+	
+	/**
+	 * 设置整数值
+	 *
+	 * @param key         键名
+	 * @param value       要设置的值
+	 */
+	public native void SetInt(const char[] key, int value);
+	
+	/**
+	 * 获取浮点数值
+	 *
+	 * @param key         键名
+	 * @param defvalue    默认值
+	 * @return            浮点数值
+	 */
+	public native float GetFloat(const char[] key, float defvalue = 0.0);
+	
+	/**
+	 * 设置浮点数值
+	 *
+	 * @param key         键名
+	 * @param value       要设置的值
+	 */
+	public native void SetFloat(const char[] key, float value);
+	
+	/**
+	 * 获取指针值
+	 *
+	 * @param key         键名
+	 * @param defvalue    默认值
+	 * @return            指针值
+	 */
+	public native Address GetPtr(const char[] key, Address defvalue = Address_Null);
+	
+	/**
+	 * 查找键
+	 *
+	 * @param key         键名
+	 * @param bCreate     如果不存在是否创建
+	 * @return            找到的 KeyValues 对象
+	 */
+	public native SourceKeyValues FindKey(const char[] key, bool bCreate = false);
+	
+	/**
+	 * 从符号查找键
+	 *
+	 * @param keySymbol   键符号
+	 * @return            找到的 KeyValues 对象
+	 */
+	public native SourceKeyValues FindKeyFromSymbol(int keySymbol);
+	
+	/**
+	 * 获取第一个子键
+	 *
+	 * @return            第一个子键
+	 */
+	public native SourceKeyValues GetFirstSubKey();
+	
+	/**
+	 * 获取下一个键
+	 *
+	 * @return            下一个键
+	 */
+	public native SourceKeyValues GetNextKey();
+	
+	/**
+	 * 获取第一个真正的子键
+	 *
+	 * @return            第一个真正子键
+	 */
+	public native SourceKeyValues GetFirstTrueSubKey();
+	
+	/**
+	 * 获取下一个真正的子键
+	 *
+	 * @return            下一个真正子键
+	 */
+	public native SourceKeyValues GetNextTrueSubKey();
+	
+	/**
+	 * 获取第一个值
+	 *
+	 * @return            第一个值
+	 */
+	public native SourceKeyValues GetFirstValue();
+	
+	/**
+	 * 获取下一个值
+	 *
+	 * @return            下一个值
+	 */
+	public native SourceKeyValues GetNextValue();
+	
+	/**
+	 * 保存到文件
+	 *
+	 * @param file        文件路径
+	 * @param pathID      路径标识符，默认为 NULL_STRING
+	 * @return            是否成功保存
+	 */
+	public native bool SaveToFile(const char[] file, const char[] pathID = NULL_STRING);
+}
+
+/**
+ * @brief Use to call virtual function MatchExtL4D::GetAllMissions.
+ *
+ * @return              Missions KeyValues.
+ */
+native SourceKeyValues GetAllMission();
+
+/**
+ * @brief Use to get first map.
+ *
+ * @param sFirstMap		        First map code.
+ * @param maxlength	            First map size.
+ * @return              Number of bytes written (UTF-8 safe).
+ */
+native int GetFirstMap(char[] buffer, int maxlength);
+
+/**
+ * @brief Use to get next map.
+ *
+ * @param sNextMap		        Next map code.
+ * @param maxlength	            Next map size.
+ * @return              Number of bytes written (UTF-8 safe).
+ */
+native int GetNextMap(char[] buffer, int maxlength);
+
+/**
+ * Callback function type, invoked when GetAllFirstChapter is called.
+ *
+ * @param sDisplayTitle    The display title of the campaign (string type).
+ * @param sMapCode         The map creation code of the first chapter/map in the campaign (string type).
+ */
+typedef MissionFirstChapterCallback = function void(const char[] sDisplayTitle, const char[] sMapCode);
+
+/**
+ * @brief Retrieves the first chapter information for all campaigns under the specified gamemode.
+ *
+ * This native function asynchronously fetches the first chapter (map) data of all campaigns,
+ * and returns the result through the provided callback function.
+ *
+ * @param sGamemode        The specific gamemode to filter campaigns (string type, e.g. "coop", "versus").
+ * @param callback         The callback function to receive the first chapter data of each campaign.
+ *                         The callback will be invoked once per campaign with its first chapter info.
+ * @return                 Integer status code: 0 for success, non-zero for error (e.g. invalid gamemode).
+ */
+native int GetAllFirstChapter(const char[] sGamemode, MissionFirstChapterCallback callback);
+
+/**
+ * Callback function type, invoked when GetAllMissionChapter is called.
+ *
+ * This callback is triggered for each campaign to return its full chapter list information.
+ *
+ * @param sDisplayTitle    The display title of the campaign (string type).
+ * @param iChapterCount     The total number of chapters in the campaign (integer type, ≥ 0).
+ * @param sMapInfo          A multi-dimensional array of map information for the campaign:
+ *                          - First dimension: Chapter serial number, incrementing from 0 (0, 1, 2, 3...);
+ *                          - Second dimension: Map creation code corresponding to the serial number (string type).
+ */
+typedef AllMissionChapterCallback = function void(const char[] sDisplayTitle, int iChapterCount, const char[][] sMapInfo);
+
+/**
+ * @brief Retrieves all chapter information for all campaigns under the specified gamemode.
+ *
+ * This native function asynchronously fetches the complete chapter list (including serial numbers
+ * and map creation codes) of all campaigns, and returns the result through the provided callback function.
+ *
+ * @param sGamemode        The specific gamemode to filter campaigns (string type, e.g. "coop", "versus").
+ * @param callback         The callback function to receive all chapter data of each campaign.
+ *                         The callback will be invoked once per campaign with its full chapter list.
+ * @return                 Integer status code: 0 for success, non-zero for error (e.g. invalid gamemode).
+ */
+native int GetAllMissionChapter(const char[] sGamemode, AllMissionChapterCallback callback);
+
 /*
  * Do not edit below this line!
  */
@@ -8886,5 +9169,37 @@ public void __ext_left4deadtoolz_SetNTVOptional()
 	MarkNativeAsOptional("AmmoDef.TracerType");
 	MarkNativeAsOptional("AmmoDef.DamageForce");
 	MarkNativeAsOptional("AmmoDef.GetAmmoIndex");
+
+	MarkNativeAsOptional("SourceKeyValues.SourceKeyValues");
+    MarkNativeAsOptional("SourceKeyValues.UsesEscapeSequences");
+    MarkNativeAsOptional("SourceKeyValues.LoadFromFile");
+    MarkNativeAsOptional("SourceKeyValues.IsNull");
+    MarkNativeAsOptional("SourceKeyValues.GetName");
+    MarkNativeAsOptional("SourceKeyValues.SetName");
+    MarkNativeAsOptional("SourceKeyValues.GetNameSymbol");
+    MarkNativeAsOptional("SourceKeyValues.GetDataType");
+    MarkNativeAsOptional("SourceKeyValues.GetString");
+    MarkNativeAsOptional("SourceKeyValues.SetString");
+    MarkNativeAsOptional("SourceKeyValues.SetStringValue");
+    MarkNativeAsOptional("SourceKeyValues.GetInt");
+    MarkNativeAsOptional("SourceKeyValues.SetInt");
+    MarkNativeAsOptional("SourceKeyValues.GetFloat");
+    MarkNativeAsOptional("SourceKeyValues.SetFloat");
+    MarkNativeAsOptional("SourceKeyValues.GetPtr");
+    MarkNativeAsOptional("SourceKeyValues.FindKey");
+    MarkNativeAsOptional("SourceKeyValues.FindKeyFromSymbol");
+    MarkNativeAsOptional("SourceKeyValues.GetFirstSubKey");
+    MarkNativeAsOptional("SourceKeyValues.GetNextKey");
+    MarkNativeAsOptional("SourceKeyValues.GetFirstTrueSubKey");
+    MarkNativeAsOptional("SourceKeyValues.GetNextTrueSubKey");
+    MarkNativeAsOptional("SourceKeyValues.GetFirstValue");
+    MarkNativeAsOptional("SourceKeyValues.GetNextValue");
+    MarkNativeAsOptional("SourceKeyValues.SaveToFile");
+
+	MarkNativeAsOptional("GetAllMission");
+	MarkNativeAsOptional("GetFirstMap");
+	MarkNativeAsOptional("GetNextMap");
+	MarkNativeAsOptional("GetAllFirstChapter");
+	MarkNativeAsOptional("GetAllMissionChapter");
 }
 #endif
