@@ -41,7 +41,7 @@
 
 |   APIs   |  Count  |
 |----------|---------|
-| Natives  |   383   |
+| Natives  |   413   |
 | Forwards |   222   |
 
 
