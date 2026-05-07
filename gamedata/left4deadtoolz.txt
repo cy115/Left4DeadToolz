@@ -353,6 +353,16 @@
 				"library"	"server"
 				"linux"		"@_ZNK13TerrorNavArea14FindRandomSpotEv"
 			}
+			"TerrorNavArea::GetNextEscapeStep"
+			{
+				"library"	"server"
+				"linux"		"@_ZNK13TerrorNavArea17GetNextEscapeStepEP15NavTraverseType"
+			}
+			"TerrorNavArea::IsValidForWanderingPopulation"
+			{
+				"library"	"server"
+				"linux"		"@_ZNK13TerrorNavArea29IsValidForWanderingPopulationEv"
+			}
 			"CTerrorPlayer::WarpToValidPositionIfStuck"
 			{
 				"library"	"server"
@@ -1458,6 +1468,7 @@
 				"library"	"server"
 				"linux"		"@_ZN9CDirector16OnServerShutdownEv"
 			}
+
 			"KeyValues::operator_new"
 			{
 				"library"	"server"

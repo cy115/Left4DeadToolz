@@ -7,7 +7,7 @@
 [![License](https://img.shields.io/badge/License-LGPLv3-blue.svg)](LICENSE)
 [![SourceMod](https://img.shields.io/badge/SourceMod-1.11+-orange.svg)](https://www.sourcemod.net/)
 [![Game](https://img.shields.io/badge/Game-L4D2-brightgreen.svg)]()
-[![Version](https://img.shields.io/badge/Version-1.0.0.0-red.svg)]()
+[![Version](https://img.shields.io/badge/Version-1.0.0.4-red.svg)]()
 
 ---
 
@@ -41,7 +41,7 @@
 
 |   APIs   |  Count  |
 |----------|---------|
-| Natives  |   413   |
+| Natives  |   418   |
 | Forwards |   222   |
 
 
